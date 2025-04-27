@@ -76,7 +76,9 @@ local WILDCARD = "*"
 	@param ... any -- Argument(s) emitted from an event
 ]]
 local function SpawnCallbacks(callbacks: { Callback }, ...)
-	for _, callback in callbacks do
+	local Clone = table.clone(callbacks)
+
+	for _, callback in Clone do
 		task.spawn(callback, ...)
 	end
 end
